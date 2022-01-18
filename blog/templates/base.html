@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        {% if title %}    
+            <title>Blog - {{title}}</title>
+        {% else %}
+            <title>Blog</title>
+        {% endif %}
+    </head>
+    <body>
+        {% include 'partials/_navbar.html' %}
+        <main class="container py-3 ">
+            <div class="row">
+                <div class="col-6">
+                    {% if messages %}
+                        {% for message in messages%}
+                            <div class="alert alert-{{ messages.tag}}">
+                                {{message}}
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% block content %}
+                    {% endblock %}
+                </div>
+                <div class="col-3">
+                    {% include 'partials/_sidebar.html' %}
+                </div>
+            </div>
+        </main>
+        {% include 'partials/_footer.html' %}
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    </body>
+</html>
