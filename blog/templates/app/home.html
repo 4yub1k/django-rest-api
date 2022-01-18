@@ -3,9 +3,12 @@
 {% block content %}
 
 <article >
+    {% include 'partials/_alert.html' %}
     {% for post in posts %}
         <div class="card mb-3">
-            <div class="card-header">{{post.title}}</div>
+            <div class="card-header">{{post.title}}
+                <a class="start-end" href="{% url 'post' post.id %}">Edit</a>
+            </div>
             <div class="card-body">
                 <h2 class="card-title">{{post.title}}</h2>
                 <p class="card-text"><small>Author: {{post.author}}</small></p>

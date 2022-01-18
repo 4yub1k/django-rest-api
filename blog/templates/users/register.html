@@ -2,7 +2,7 @@
 
 {% block content %}
   {{ form.non_field_errors }}
-  <form action="/register/" method="POST">
+  <form action="{% url 'register' %}" method="POST">
     {% csrf_token %}
     <div class="mb-3">
         {{ form.email.errors }}

@@ -7,7 +7,7 @@ class Post(models.Model):
     #author=models.CharField(max_length=20)
     author=models.ForeignKey(User, on_delete=models.DO_NOTHING) #idf user deleted what to del post models.CASCADE
     content=models.TextField()
-    date=models.DateTimeField(default=timezone.now)
+    date=models.DateTimeField(default=timezone.now, blank=True)
 
 def __str__(self):
     return self.author

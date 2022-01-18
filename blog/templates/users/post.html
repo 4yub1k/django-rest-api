@@ -1,0 +1,28 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<form action="{% url 'update' %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Title: </label>
+        <input type="label" name="title" class="form-control" id="title" value="{{posts.title}}">
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content: </label>
+        <textarea class="form-control" name="content" id="content" rows="3">{{posts.content}}</textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date: {{posts.date|date:'F d, Y' }}</label>
+       </div>
+      <div class="mb-3">
+        <label class="form-label">Author: {{posts.author}}</label>
+        <input type="hidden" id="post_id" name="post_id" value="{{posts.id}}">
+        <input type="hidden" id="user_id" name="user_id" value="{{user.id}}">
+        <input type="hidden" id="date" name="date" value="{{posts.date}}">
+       </div>
+      <input class="btn btn-primary" type="submit" value="Update">
+      <a class="btn btn-primary" href="{% url 'home' %}" role="button">Back</a>
+</form>
+
+{% endblock content %}
