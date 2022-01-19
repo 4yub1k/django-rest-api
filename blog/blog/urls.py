@@ -19,6 +19,7 @@ from django.urls import path,include
 from users import views as user_views
 
 urlpatterns = [
+    path('api/',include('api.urls')),
     path('blog/', include('app.urls')),
     path('register/', user_views.register, name="register"),
     path('update/', user_views.update, name="update"),
