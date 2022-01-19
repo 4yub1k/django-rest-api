@@ -49,19 +49,24 @@ def update(request):
             content=request.POST['content']
             post_id=request.POST['post_id']
             date=timezone.now() #current time
-            post_check=Post.objects.all().filter(author_id=author_id)
+
+            post_check=Post.objects.all().filter(author_id=author_id,id=post_id)
             if post_check:#no use
             #if request.user.is_authenticated:
+                if 'delete' in request.POST.keys() and request.POST['delete']:#check for empty & value
+                    #you can use .get() method also.
+                    post_delete=post_check=Post.objects.get(author_id=author_id,id=post_id)
+                    post_delete.delete()
+                    messages.success(request,'Post deleted succesfully !')
+                    return redirect('home')
                 post_update=Post(id=post_id,title=title, author_id=author_id, content=content, date=date)
                 post_update.save()
                 messages.success(request,'Post updated !')
-
                 return redirect('home')
             else:
                 return redirect('home')
         else:
             return redirect('home')
-
 # def register(request):
 #     if request.method == 'POST':
 #         form = UserCreationForm() #instence

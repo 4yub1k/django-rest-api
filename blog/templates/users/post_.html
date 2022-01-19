@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<article >
+{% include 'partials/_alert.html' %}
+<div class="card mb-3">
+    <div class="card-header">{{posts.title}}
+    </div>
+    <div class="card-body">
+        <h2 class="card-title">{{posts.title}}</h2>
+        <p class="card-text"><small>Author: {{posts.author}}</small></p>
+        <p class="card-text">{{posts.content}}</p>
+    </div>
+    <div class="card-footer"><small>Published Date: {{posts.date|date:'F d, Y'}}</small></div>
+</div>
+</article>
+{% endblock content %}

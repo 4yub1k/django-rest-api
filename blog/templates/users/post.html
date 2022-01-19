@@ -21,8 +21,9 @@
         <input type="hidden" id="user_id" name="user_id" value="{{user.id}}">
         <input type="hidden" id="date" name="date" value="{{posts.date}}">
        </div>
-      <input class="btn btn-primary" type="submit" value="Update">
-      <a class="btn btn-primary" href="{% url 'home' %}" role="button">Back</a>
+      <input class="btn-sm btn-dark" type="submit" name="update" value="Update">
+      <input class="btn-sm btn-danger" type="submit" name="delete" value="Delete">
+      <input class="btn-sm btn-dark" type="button" onclick="history.back();" value="Back">
 </form>
 
 {% endblock content %}

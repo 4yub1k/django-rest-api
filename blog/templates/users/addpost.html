@@ -1,0 +1,25 @@
+{% extends 'base.html'%}
+{% load static %}
+{% block content %}
+
+<form action="{% url 'add' %}" method="POST">
+    {% csrf_token %}
+    <div class="mb-3">
+        <label for="title" class="form-label">Title: </label>
+        <input type="label" name="title" class="form-control" id="title" required>
+      </div>
+      <div class="mb-3">
+        <label for="content" class="form-label">Content: </label>
+        <textarea class="form-control" name="content" id="content" rows="3" required></textarea>
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Date: {{date|date:'F d, Y' }}</label>
+       </div>
+      <div class="mb-3">
+        <label class="form-label">Author: {{user.username}}</label>
+       </div>
+      <input class="btn-sm btn-dark" type="submit" value="Add">
+      <input class="btn-sm btn-dark" type="button" onclick="history.back();" value="Cancel">
+</form>
+
+{% endblock content %}

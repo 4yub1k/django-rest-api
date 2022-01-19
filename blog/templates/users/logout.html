@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<div>
-    <p>You have been Logged out !</p>
-</div>
+{% if user.is_authenticated %}
+    <div>
+        <p>You have been Logged out !</p>
+    </div>
+{% else %}
+    <p>To log in again click : <a href="{% url 'login' %}" >Log in</a> </p>
+{% endif %}
+
 {% endblock content %}
