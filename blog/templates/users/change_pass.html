@@ -4,6 +4,7 @@
   <form method="POST">
     {% csrf_token %}
     <div class="mb-3">
+        {{form}}
       {{ form.username.errors }}
       <label for="{{ form.username.id_for_label }}" class="form-label">Username:</label>
       <div >{{ form.username }}</div>   
@@ -14,6 +15,5 @@
       <div >{{ form.password }}</div>  
       </div>
     <button type="submit" class="btn btn-primary">Submit</button>
-    <small>Reset password : <a href="{% url 'change-password' %}">Reset></a></small>
   </form>
 {% endblock content %}

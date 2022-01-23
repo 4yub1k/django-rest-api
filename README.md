@@ -5,6 +5,9 @@ Note : Ignore my front end skills, And i haven't added pagination and search sec
 http://127.0.0.1:8000/api/
 http://127.0.0.1:8000/blog/
 ```
+### Rest Api:
+![image](https://user-images.githubusercontent.com/45902447/150176866-dabd0249-99dd-4166-a7f5-4622ccf850b6.png)
+
 ![image](https://user-images.githubusercontent.com/45902447/149906066-a903d5a3-058d-436b-9a87-b51ae0d9d7b9.png)
 ![image](https://user-images.githubusercontent.com/45902447/150120785-43d8dccb-c422-4f0b-8f93-d0cc5668609a.png)
 
