@@ -44,21 +44,24 @@ def detail_post(request,post):
         posts=Post.objects.get(pk=post)#id=post
     except Post.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
-
-    if request.method == 'GET':
-        serializer = PostSerializer(posts)
-        return Response(serializer.data)
-
-    elif request.method == 'PUT':
-        serializer = PostSerializer(posts, data=request.data)
-        if serializer.is_valid():
-            serializer.save()
+    print(request.user)
+    if posts.author_id == request.user.id: #Browse User database for details, user.id,user etc
+        if request.method == 'GET':
+            serializer = PostSerializer(posts)
             return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-    elif request.method == 'DELETE':
-        posts.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        elif request.method == 'PUT':
+            serializer = PostSerializer(posts, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        elif request.method == 'DELETE':
+            posts.delete()
+            return Response({"Deleted":"Post removed successfully"},status=status.HTTP_204_NO_CONTENT)
+    else: #you can write it withoue else too!
+        return Response({"Warning":"You are not authorized to access !"})
 
 @api_view(['POST'])
 def registeruser(request):
@@ -112,4 +115,10 @@ def create_auth_token(sender, instance=None, created=False, **kwargs):
 #     "username": "testernew",
 #     "email": "testtest@test.com",
 #     "token": "3cc6acf4758616207e0092e7a4d3d743b1beae0f"
+# }
+
+###### NOTe to access auth posts###
+#send post with (Header)
+#{
+#   "Authorization":"Token<space>tokenvalue"
 # }
